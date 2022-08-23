@@ -1,15 +1,26 @@
 <div class="container">
-  <app-cockpit
-    (svCreated)="onServerEdit($event)"
-    (bpCreated)="onBluePrintEdit($event)"></app-cockpit>
-  <hr>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col">
+      <app-cockpit
+      (svCreated)="onServerEdit($event)"
+      (bpCreated)="onBluePrintEdit($event)"></app-cockpit>
+    <hr>
+  </div>
+    <div class="col">
+      <app-game-control
+        (countEmited)="logCount($event)"></app-game-control>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <button class="btn btn-primary me-2 mb-2" (click)="onChangeFirst()">Change first element</button>
+      <button class="btn btn-danger mb-2" (click)="onDestroyFirst()">Destroy first component</button>
       <app-server-element
-        *ngFor="let serverElement of serverElements | slice: 1"
+        *ngFor="let serverElement of serverElements"
         [srvElement]="serverElement"
+        [name]="serverElement.name"
       >
-        <p>
+        <p #contentParagraph>
           <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
           <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
         </p>
@@ -17,4 +28,7 @@
     </div>
   </div>
   <img src="https://bit.ly/3RjrnmX" style="max-height: 200px;" alt="">
+  <img src="https://shorturl.at/VX169" style="max-height: 200px;" alt="">
 </div>
+
+<!-- *ngFor="let serverElement of serverElements | slice: 1" -->

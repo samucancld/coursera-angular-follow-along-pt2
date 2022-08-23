@@ -1,0 +1,16 @@
+<button (click)="callRef()" class="btn btn-primary me-2">Start Game</button>
+<button (click)="stopRef()"  class="btn btn-success">Pause Game</button>
+<div class="row" *ngFor="let count of countArray">
+    <div class="col-md-3">
+        <app-even
+        *ngIf="!(count % 2)"
+        [number] = count
+        ></app-even>
+    </div>
+    <div class="col-md-3">
+        <app-odd
+        *ngIf="!!(count % 2)"
+        [number] = count
+        ></app-odd>
+    </div>
+</div>
